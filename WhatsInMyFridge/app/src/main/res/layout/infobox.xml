@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/drawable_border"
+    android:id="@+id/infobox">
+
+    <TextView
+        android:id="@+id/info_title"
+        android:layout_width="320dp"
+        android:layout_height="31dp"
+        android:background="@color/freshGreenish"
+        android:text="@string/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="115dp"
+        android:textAlignment="center"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/info_desc"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:background="@color/freshGreenish"
+        android:text="@string/description"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/info_kcal"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:background="@color/freshGreenish"
+        android:text="@string/kcal"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@+id/textView6"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="174dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/info_nutr"
+        android:layout_width="320dp"
+        android:layout_height="20dp"
+        android:background="@color/freshGreenish"
+        android:text="@string/nutrients"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/desc"
+        tools:layout_editor_absoluteY="174dp" />
+
+</LinearLayout>

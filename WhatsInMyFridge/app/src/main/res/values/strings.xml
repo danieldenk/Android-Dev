@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">WhatsInMyFridge</string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_about">About</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="image_of_recipe">Image of Recipe</string>
+    <string name="favorite_image">Favorite Image</string>
+    <string name="e_mail">E-Mail:</string>
+    <string name="password">Password:</string>
+    <string name="login">Login</string>
+    <string name="signup">Signup</string>
+    <string name="my_name_is_daniel_denk_and_i_am_the_developer_of_this_app_nthis_app_was_developed_during_the_android_development_course_of_via_university">My name is Daniel Denk and I am the developer of this app.\nThis app was developed during the Android Development Course of VIA University.</string>
+    <string name="beneath_you_can_see_your_favorite_recipes">Beneath you can see your favorite recipes</string>
+    <string name="please_add_the_ingredients_you_own">Please add the ingredients you own:</string>
+    <string name="add">ADD</string>
+    <string name="search_recipe">Search Recipe</string>
+    <string name="add_ingredient">Add Ingredient</string>
+    <string name="please_insert_the_name_of_the_recipe_you_are_looking_for_beneath">Please insert the name of the recipe you are looking for beneath:</string>
+    <string name="to_add_to_favorites_click_heart_beneath_nto_remove_a_recipe_from_the_favorites_please_press_it_again">To add to favorites click heart beneath.\nTo remove a recipe from the favorites please press it again.</string>
+    <string name="type_in_the_recipe">Type in the Recipe</string>
+
+    <string name="kcal">Kcal</string>
+    <string name="nutrients">Nutrients</string>
+    <string name="image_ingredient">Image Ingredient</string>
+    <string name="image_delete">Image Delete</string>
+    <string name="description">Description</string>
+    <string name="title">Title</string>
+
+    <string name="difficulty">Difficulty</string>
+    <string name="home">Home</string>
+    <string name="favorites">Favorites</string>
+    <string name="search">Search</string>
+    <string name="about">About</string>
+    <string name="logout">Logout</string>
+    <string name="whatsinmyfridge_nlogin">WhatsInMyFridge</string>
+</resources>

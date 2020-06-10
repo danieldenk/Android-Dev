@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WhatsInMyFridge</string>
+    <string name="hello_blank_fragment">Hallo leeres fragment</string>
+    <string name="title_activity_about">Über</string>
+    <string name="first_fragment_label">Erstes Fragment</string>
+    <string name="second_fragment_label">ZWeites Fragment</string>
+    <string name="next">Weiter</string>
+    <string name="previous">Zurück</string>
+    <string name="hello_first_fragment">Hallo erstes fragment</string>
+    <string name="hello_second_fragment">Hallo zweites Fragment</string>
+    <string name="image_of_recipe">Rezeptbild</string>
+    <string name="favorite_image">FavoritIcon</string>
+    <string name="whatsinmyfridge_nlogin">WhatsInMyFridge\nLogin</string>
+    <string name="e_mail">Login</string>
+    <string name="password">Passwort:</string>
+    <string name="login">Login</string>
+    <string name="signup">Registrieren</string>
+    <string name="my_name_is_daniel_denk_and_i_am_the_developer_of_this_app_nthis_app_was_developed_during_the_android_development_course_of_via_university">Mein Name ist Daniel Denk und ich bin der Entwickler dieser App. Diese App wurde im Rahmen des And Dev Kurs an der VIA University entwickelt.</string>
+    <string name="beneath_you_can_see_your_favorite_recipes">Unten findest du deine Lieblingsrezepte</string>
+    <string name="please_add_the_ingredients_you_own">Bitte füge die Zutaten hinzu, die du besitzt:</string>
+    <string name="add">Hinzufügen</string>
+    <string name="search_recipe">Suchen</string>
+    <string name="add_ingredient">Hinzufügen</string>
+    <string name="please_insert_the_name_of_the_recipe_you_are_looking_for_beneath">Bitte gib den Namen eines Rezeptes ein</string>
+    <string name="to_add_to_favorites_click_heart_beneath_nto_remove_a_recipe_from_the_favorites_please_press_it_again">Um das Rezept den Favoriten hinzuzufügen, bitte klick auf das Herz.</string>
+    <string name="type_in_the_recipe">Gib den Namen des Rezeptes an</string>
+    <string name="kcal">KCAL</string>
+    <string name="nutrients">Nährstofflevel</string>
+    <string name="image_ingredient">Bild der Zutat</string>
+    <string name="image_delete">Bild Löschen</string>
+    <string name="description">Beschreibung</string>
+    <string name="title">Titel</string>
+    <string name="difficulty">Schwierigkeit</string>
+    <string name="home">Home</string>
+    <string name="favorites">Favoriten</string>
+    <string name="search">Suche</string>
+    <string name="about">Über</string>
+    <string name="logout">Logout</string>
+</resources>
