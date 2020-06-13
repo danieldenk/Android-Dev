@@ -16,6 +16,7 @@ Once you open the project, you are going to find a folder with deprecated classe
 <u><strong>More facts:</strong></u>
 <ul>
   <li>The implemented Database holds the data for the ingredients and recipes</li>
+  <li>I have mainly used activites for better user experience as the user can easily retrace his steps and perform changes.<br>This would be more difficult/annoying with fragments.</li>
   <li>I have also created a translation into German for this app.<br>You can find a screenshot in the root directory of this repository (or beneath).</li>
   <img src="https://github.com/danieldenk/Android-Dev/blob/master/German_Login.jpg" alt="Login in German" height="500px"/>
   <li>The app contains a login functionality for anonymous users next to a standard one.<br>For later development, I plan to include functionality to add own recipes that are linked to ones user.</li>
