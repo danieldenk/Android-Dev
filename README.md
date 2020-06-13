@@ -12,4 +12,6 @@ Once you open the project, you are going to find a folder with deprecated classe
   <li>I have also created a translation into German for this app.<br>You can find a screenshot in the root directory of this repository (or beneath).</li>
   <img src="https://github.com/danieldenk/Android-Dev/blob/master/German_Login.jpg" alt="Login in German" height="500px"/>
   <li>The app contains a login functionality for anonymous users next to a standard one.<br>For later development, I plan to include functionality to add own recipes that are linked to ones user.</li>
+  <li>It is not possible to search for an empty list of ingredients.</li>
+  <li>Only valid (known) Ingredients can be added to the list of ingredients.</li>
 </ul>
