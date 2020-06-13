@@ -11,7 +11,7 @@ This repository includes the sourcecode to the app that had to be developed for 
 <strong>Please note:</strong>
 Once you open the project, you are going to find a folder with deprecated classes. These were used to parse a JSON Object that was being received by the WIKIPEDIA API. Because it was not working as some of the objects had been nested up to 4 LEVELS!!!, I had decided to process the JSON Object instead, because it was more convenient and more than enough to implement my use case. (Subject: Networking)
 
-# Right at the moment, the amount of recipes & ingredients in the database is limited. Nevertheless it can always easily be expanded within the database.
+#### Right at the moment, the amount of recipes & ingredients in the database is limited. Nevertheless it can always easily be expanded within the database.
 
 <u><strong>More facts:</strong></u>
 <ul>
