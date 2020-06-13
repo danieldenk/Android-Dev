@@ -2,8 +2,8 @@
 This repository includes the sourcecode to the app that had to be developed for android during the Android Development class of VIA University College.
 
 <hr>
-Find the YouTube Video here:
-https://youtu.be/SGCrmQ1_Ia4
+<h2>Find the YouTube Video here:
+https://youtu.be/SGCrmQ1_Ia4</h2>
 <hr>
 
 <h3>For a better navigation throughout the app, and to understand each of the componants better, I have also created a Flowchart which you can find in this directory.</h3>
