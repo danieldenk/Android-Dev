@@ -10,5 +10,6 @@ Once you open the project, you are going to find a folder with deprecated classe
 <ul>
   <li>The implemented Database holds the data for the ingredients and recipes</li>
   <li>I have also created a translation into German for this app. You can find a screenshot in the root directory of this repository.</li>
-  [German Language Support]: https://github.com/danieldenk/Android-Dev "Login in German"
+  <img src="https://github.com/danieldenk/Android-Dev/German_Login.jpg" alt="Login in German" />
+  [German Language Support]: https://github.com/danieldenk/Android-Dev/German_Login.jpg "Login in German"
 </ul>
