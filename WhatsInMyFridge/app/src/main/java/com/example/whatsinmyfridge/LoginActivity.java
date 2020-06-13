@@ -161,7 +161,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Sorry, you could not be logged in.\nPlease try again!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "\t\tSorry, you could not be logged in.\nPlease try again!", Toast.LENGTH_LONG).show();
                             // Reaching state "finished" -> Hiding progressbar
                             progressBar.setVisibility(ProgressBar.INVISIBLE);
                         } else {
