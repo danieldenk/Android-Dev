@@ -11,7 +11,7 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
  */
 public class DatabaseHelper extends SQLiteAssetHelper {
     // Database Name
-    private static final String DB_Name = "recipes_db_10.db";
+    private static final String DB_Name = "recipes_db_11.db";
 
     // DB Version
     private static final int DB_Version = 1;

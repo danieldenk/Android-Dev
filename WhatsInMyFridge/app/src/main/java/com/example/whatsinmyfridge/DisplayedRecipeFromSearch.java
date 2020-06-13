@@ -181,7 +181,10 @@ public class DisplayedRecipeFromSearch extends AppCompatActivity {
                 // the last sentence
                 snippet_html = snippet_html.substring(0, snippet_html.lastIndexOf(".") + 1).replaceAll("\\<.*?\\>|\"", "");
                 // Once this is done we can add the parsed text to our application
-                add_info.setText("Wikipedia says:\n" + snippet_html);
+                if (snippet_html.equals(""))
+                    add_info.setText("Wikipedia says:\n" + "nothing found");
+                else
+                    add_info.setText("Wikipedia says:\n" + snippet_html);
             }
 
             // In case something has f*cked up then we get a display of the error message
@@ -220,7 +223,13 @@ public class DisplayedRecipeFromSearch extends AppCompatActivity {
                 // Log.d("Debug", "Link: " + jsonArray.get(3).toString().replaceAll("\\[|\\]|\"", ""));
 
                 // We get rid of all the unnecessary items of the String and show the link in the app
-                readMore.setText("Read more:\n" + jsonArray.get(3).toString().replaceAll("\\[|\\]|\"", ""));
+                String txt = jsonArray.get(3).toString().replaceAll("\\[|\\]|\"", "");
+                if (txt.equals(""))
+                    readMore.setText("Read more:\n" + "nothing found");
+                else
+                    readMore.setText("Read more:\n" + jsonArray.get(3).toString().replaceAll("\\[|\\]|\"", ""));
+
+
             }
 
             // If f*cked up then see Logcat

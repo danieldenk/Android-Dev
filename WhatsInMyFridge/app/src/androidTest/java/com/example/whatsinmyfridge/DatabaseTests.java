@@ -39,11 +39,11 @@ public class DatabaseTests {
     @Test
     public void getFavoritesDataTest() {
         // Getting all of the Recipe Titles from the Recipes within the Favorites List
-        assertEquals(db_communicator.getFavoritesData(0), new ArrayList<String>(Arrays.asList("Fried Egg", "Schnitzel", "Spaghetti")));
+        assertEquals(db_communicator.getFavoritesData(0), new ArrayList<String>(Arrays.asList("Fried Egg", "Schnitzel", "Spaghetti", "Filled Bell Pepper", "French Fries")));
 
         // Now we are testing if the method is reacting to changes in the favorites list
         db_communicator.setFavorite("Boiled Egg", 1);
-        assertEquals(db_communicator.getFavoritesData(0), new ArrayList<String>(Arrays.asList("Fried Egg", "Schnitzel", "Boiled Egg", "Spaghetti")));
+        assertEquals(db_communicator.getFavoritesData(0), new ArrayList<String>(Arrays.asList("Fried Egg", "Schnitzel", "Boiled Egg", "Spaghetti", "Filled Bell Pepper", "French Fries")));
     }
 
     @Test(expected = IllegalStateException.class)
@@ -70,9 +70,9 @@ public class DatabaseTests {
     @Test
     public void getDataTest(){
         // Checks if the amount of data returned matches the size of elements in the database
-        assertEquals(db_communicator.getData(5).size(), 5);
+        assertEquals(db_communicator.getData(5).size(), 10);
         // Gives the difficulty of all of the recipes in the database
-        assertEquals(db_communicator.getData(2), new ArrayList<String>(Arrays.asList("Super Easy", "Medium", "Super Easy", "Easy", "Medium")));
+        assertEquals(db_communicator.getData(2), new ArrayList<String>(Arrays.asList("Super Easy", "Medium", "Super Easy", "Easy", "Medium", "Easy", "Medium", "Super Easy", "Medium", "Hard")));
     }
 
     @Test
@@ -82,7 +82,7 @@ public class DatabaseTests {
         // Checks if an ingredient of type flour exists
         assertNotSame(db_communicator.getIngredientsData("Flour").size(), 0);
         // Checks all ingredients for the ones we expect to exist
-        assertEquals(db_communicator.getIngredientsData(0), new ArrayList<String>(Arrays.asList("Noodles", "Meat", "Flour", "Eggs", "Sauce", "Onion", "Bread")));
+        assertEquals(db_communicator.getIngredientsData(0), new ArrayList<String>(Arrays.asList("Noodles", "Meat", "Flour", "Eggs", "Sauce", "Onion", "Bread", "Milk", "Bell Pepper", "Potatoes")));
     }
 
     @Test(expected = IllegalStateException.class)

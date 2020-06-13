@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
-import androidx.test.espresso.DataInteraction;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
@@ -19,20 +18,17 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
 
 /**
@@ -77,7 +73,7 @@ public class SearchFragmentTest {
                                 8),
                         isDisplayed()));
         appCompatButton.perform(click());
-// Waiting (symbolizes real life user interaction)
+        // Waiting (symbolizes real life user interaction)
         SystemClock.sleep(1000);
         ViewInteraction bottomNavigationItemView = onView(
                 allOf(withId(R.id.search), withContentDescription("Search"),
@@ -88,7 +84,7 @@ public class SearchFragmentTest {
                                 2),
                         isDisplayed()));
         bottomNavigationItemView.perform(click());
-// Waiting (symbolizes real life user interaction)
+        // Waiting (symbolizes real life user interaction)
         SystemClock.sleep(1000);
         ViewInteraction appCompatAutoCompleteTextView = onView(
                 allOf(withId(R.id.auto_complete_input_search),
@@ -98,7 +94,7 @@ public class SearchFragmentTest {
                                         0),
                                 0)));
         appCompatAutoCompleteTextView.perform(scrollTo(), replaceText("Boiled Egg"), closeSoftKeyboard());
-// Waiting (symbolizes real life user interaction)
+        // Waiting (symbolizes real life user interaction)
         SystemClock.sleep(1000);
 
         ViewInteraction appCompatImageView = onView(
@@ -110,7 +106,7 @@ public class SearchFragmentTest {
                                 7)));
         appCompatImageView.perform(scrollTo(), click());
 
-// Waiting (symbolizes real life user interaction)
+        // Waiting (symbolizes real life user interaction)
         SystemClock.sleep(1000);
         ViewInteraction bottomNavigationItemView2 = onView(
                 allOf(withId(R.id.fav), withContentDescription("Favorites"),
