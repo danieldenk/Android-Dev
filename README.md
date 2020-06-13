@@ -22,6 +22,7 @@ Once you open the project, you are going to find a folder with deprecated classe
     <li>Only valid (known) Ingredients can be added to the list of ingredients.</li>
   </ul></li>
   <li>The background image that is used at the login, is a free to use background wallpaper for android.<br>Here I had to change the opacity.</li>
+  <li>Some of the additional libraries I am using are: Guava and AndroidViewAnimations</li>
   <li>The source code includes a lot of comments about future development plans. Search for "TODO" to read more.</li>
   <li>You can also find the YouTube demonstration of the app beneath:</li>
   <a href="http://www.youtube.com/watch?feature=player_embedded&v=SGCrmQ1_Ia4" target="_blank"><img src="http://img.youtube.com/vi/SGCrmQ1_Ia4/0.jpg" 
