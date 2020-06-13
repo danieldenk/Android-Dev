@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
-
 /**
  * This class is being used to connect us to the database
  * We are encapsulating the communication with the database itself so its easier to make the changes
@@ -12,7 +11,7 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
  */
 public class DatabaseHelper extends SQLiteAssetHelper {
     // Database Name
-    private static final String DB_Name = "recipes_db_7.db";
+    private static final String DB_Name = "recipes_db_10.db";
 
     // DB Version
     private static final int DB_Version = 1;

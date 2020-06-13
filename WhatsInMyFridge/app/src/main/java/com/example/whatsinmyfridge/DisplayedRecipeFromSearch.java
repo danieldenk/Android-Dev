@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -144,12 +146,16 @@ public class DisplayedRecipeFromSearch extends AppCompatActivity {
         // "Initializing" the interface preciously created to perform retrofit
         IRetrofitAPI retrofit_api = retrofit.create(IRetrofitAPI.class);
 
-        getWikipediaSnippet(retrofit_api,flat_recipe);
-        getWikipediaURL(retrofit_api,flat_recipe);
+        // Getting the needed Information from Wikipedia
+        getWikipediaSnippet(retrofit_api, flat_recipe);
+        getWikipediaURL(retrofit_api, flat_recipe);
+
+        // Creating an animation for the favorite heart
+        YoYo.with(Techniques.Pulse).delay(3000).duration(1000).repeat(-1).playOn(findViewById(R.id.displayed_recipe_fav));
     }
 
     // FIRST METHOD FOR RETROFIT: USED TO GET TEXT SNIPPET WITH ADDITIONAL INFO
-    public void getWikipediaSnippet(IRetrofitAPI retrofit_api, ArrayList<String> flat_recipe){
+    public void getWikipediaSnippet(IRetrofitAPI retrofit_api, ArrayList<String> flat_recipe) {
         // Getting a short description from Wikipedia based on the recipe title
         Call<JsonElement> first_call = retrofit_api.getEntry(flat_recipe.get(0));
 
@@ -188,8 +194,9 @@ public class DisplayedRecipeFromSearch extends AppCompatActivity {
             }
         });
     }
+
     // SECOND RETROFIT METHOD USED TO GET THE RECIPE URL
-    public void getWikipediaURL(IRetrofitAPI retrofit_api, ArrayList<String> flat_recipe){
+    public void getWikipediaURL(IRetrofitAPI retrofit_api, ArrayList<String> flat_recipe) {
 
         // This is the second call to the wikipedia api, but we are calling a different part of the
         // API.
@@ -215,6 +222,7 @@ public class DisplayedRecipeFromSearch extends AppCompatActivity {
                 // We get rid of all the unnecessary items of the String and show the link in the app
                 readMore.setText("Read more:\n" + jsonArray.get(3).toString().replaceAll("\\[|\\]|\"", ""));
             }
+
             // If f*cked up then see Logcat
             @Override
             public void onFailure(Call<JsonElement> call, Throwable t) {

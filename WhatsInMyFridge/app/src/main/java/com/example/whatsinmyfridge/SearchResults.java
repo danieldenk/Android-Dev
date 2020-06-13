@@ -10,10 +10,13 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.common.collect.Sets;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * This is the class used to represent the activity of all the recipe searches
@@ -43,7 +46,7 @@ public class SearchResults extends AppCompatActivity {
         TextView searched_ingredients = findViewById(R.id.searched_ingredients);
         searched_ingredients.setText("The searched ingredients were:\n" + Arrays.toString(ingredients.toArray()) + "\nPress on a recipe if you want to see how it is made!");
 
-        // Initiating the gridview which will hold these recipes and the corresponding adapter
+        // Initiating the grid view which will hold these recipes and the corresponding adapter
         GridView gridView = (GridView) findViewById(R.id.search_results_grid);
         recipes = new ArrayList<>();
         recipeAdapter = new RecipeAdapter(this, R.layout.recipe_item, recipes);
@@ -64,42 +67,43 @@ public class SearchResults extends AppCompatActivity {
 
         db_communicator.close();
 
-        boolean seen_one = false;
         int index = 0;
-        boolean seen_all = true;
+
         ArrayList<Integer> index_recipes = new ArrayList<>();
 
-        // First we need to sort the ingredients so we can compare them in the same way as the ingredients are sorted
-        // in the database. (The database contains the ingredients by an alphabetical order)
-        // Normally, because there are so many ingredients a NoSQL database would make more sense to use
-        Collections.sort(ingredients, new Comparator<IngredientItem>() {
-            public int compare(IngredientItem s1, IngredientItem s2) {
-                return s1.getTitle().compareToIgnoreCase(s2.getTitle());
-            }
-        });
+        // For the powerSet, there has to be created a set first...
+        HashSet<String> set = new HashSet<>();
+
+        // Because the method does not work with an IngredientItem, I am extracting the info that is needed (Title)
+        for (IngredientItem ing : ingredients)
+            set.add(ing.getTitle());
+
+        // Here we need to create the powerSet for the ingredients to check all possible ingredient combinations
+        // for the recipes (Yep, I know that this does not really have high-performance and that there is still room for improvement.
+        // One way would be to exclude same length Arrays as the Sorting already takes care of the right order.)
+        // Nevertheless, this is the easiest understandable way to implement such functionality. Just be careful not to add too many ingredients!
+        Set<Set<String>> powerIngredientList = Sets.powerSet(set);
 
         // For every ingredient_list passed check...
         for (String recipe : ing_lst) {
-            // If you want to display what is actually happening uncomment this:
-            // Log.d("Debug", "[" + recipe + "]" + " - " + Arrays.toString(ingredients.toArray()).replace(",", ";"));
-            // ... if the list is similar to the lists we we have in our recipes from the database
-            if (("[" + recipe + "]").equals(Arrays.toString(ingredients.toArray()).replace(",", ";"))) {
-                seen_all = true;
-                // if we see all of the ingredients within a recipe then we have to add its index to the index list
-                index_recipes.add(index);
-            } else {
-                // Otherwise we need to get through all of the ingredients to see if
-                // there is a recipe that only needs one of the present ingredients
-                for (IngredientItem ing : ingredients)
-                    if (("[" + recipe + "]").equals("[" + ing.toString() + "]"))
-                        index_recipes.add(index);
-                // Please Note: We obviously need a scalar multiplication for every item combination
-                // As you might already think, this is not really computation performant, which is why
-                // I have kept it simple for the moment being, until I find a good and efficient other option
+            for (Set<String> li : powerIngredientList) {
+                // The Set has to be converted into an ArrayList first, because of the later following Array - String comparison
+                ArrayList<String> tempIngLst = new ArrayList<>(li);
+                // First we need to sort the ingredients so we can compare them in the same way as the ingredients are sorted
+                // in the database. (The database contains the ingredients by an alphabetical order)
+                // Normally, because there are so many ingredients a NoSQL database would make more sense to use
+                Collections.sort(tempIngLst);
+                // If you want to display what is actually happening uncomment this:
+                // Log.d("Debug", "[" + recipe + "]" + " - " + Arrays.toString(tempIngLst.toArray()).replace(",", ";"));
+                if (("[" + recipe + "]").equals(Arrays.toString(tempIngLst.toArray()).replace(",", ";"))) {
+                    // if we see all of the ingredients within a recipe then we have to add its index to the index list
+                    index_recipes.add(index);
+                }
             }
             // Goto next index
             index++;
         }
+
 
         // For all indices previously added to the list add the recipes to the recipe list for display
         for (Integer i : index_recipes)
@@ -117,7 +121,7 @@ public class SearchResults extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                // For debuging reasons if you want to see the index and title uncomment this:
+                // For debugging reasons if you want to see the index and title uncomment this:
                 // Log.d("Debug", String.valueOf(recipes.get(position).getTitle()) + " clicked");
 
                 // Creating a new intent where we pass the title of the recipe clicked, as it is the
@@ -128,7 +132,6 @@ public class SearchResults extends AppCompatActivity {
             }
         });
         // Notifying the adapter as we have added recipes
-//      recipeAdapter.notifyDataSetChanged();
-
+        // recipeAdapter.notifyDataSetChanged();
     }
 }

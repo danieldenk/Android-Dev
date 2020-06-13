@@ -42,4 +42,6 @@
     <string name="about">About</string>
     <string name="logout">Logout</string>
     <string name="whatsinmyfridge_nlogin">WhatsInMyFridge</string>
+    <string name="i_have_forgotten_my_password">I have forgotten my password</string>
+    <string name="login_as_guest">Login as Guest</string>
 </resources>

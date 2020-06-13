@@ -48,12 +48,9 @@ public class DB_Communicator {
      */
     public ArrayList<String> getFavoritesData(int index) {
         Cursor c = db.rawQuery("SELECT * FROM recipes WHERE ISFAVORITE=1", new String[]{});
-
         ArrayList<String> query_result = new ArrayList<>();
-
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
             query_result.add(c.getString(index));
-
         c.close();
         return query_result;
     }
@@ -67,12 +64,9 @@ public class DB_Communicator {
     public ArrayList<String> searchRecipe(String name) {
         Cursor c = db.rawQuery("SELECT * FROM recipes WHERE NAME=\"" + name + "\"", new String[]{});
         ArrayList<String> query_result = new ArrayList<>();
-
-        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-            for (int index = 0; index < c.getColumnCount(); index++) {
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
+            for (int index = 0; index < c.getColumnCount(); index++)
                 query_result.add(c.getString(index));
-            }
-        }
         c.close();
         return query_result;
     }

@@ -40,6 +40,21 @@ public class IngredientItem implements Parcelable {
     // The beneath methods are therefore either simple getters and setters or simply implement parcelable //
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    // Constructor
+    public IngredientItem(int img_res, String title, String desc, String kcal, String nutr) {
+        this.img_res = img_res;
+        this.title = title;
+        this.desc = desc;
+        this.kcal = kcal;
+        this.nutr = nutr;
+    }
+
+    protected IngredientItem(Parcel in) {
+        img_res = in.readInt();
+        title = in.readString();
+        desc = in.readString();
+    }
+
     public static Creator<IngredientItem> getCREATOR() {
         return CREATOR;
     }
@@ -58,21 +73,6 @@ public class IngredientItem implements Parcelable {
 
     public void setNutr(String nutr) {
         this.nutr = nutr;
-    }
-
-    // Constructor
-    public IngredientItem(int img_res, String title, String desc, String kcal, String nutr) {
-        this.img_res = img_res;
-        this.title = title;
-        this.desc = desc;
-        this.kcal = kcal;
-        this.nutr = nutr;
-    }
-
-    protected IngredientItem(Parcel in) {
-        img_res = in.readInt();
-        title = in.readString();
-        desc = in.readString();
     }
 
     public int getImg_res() {

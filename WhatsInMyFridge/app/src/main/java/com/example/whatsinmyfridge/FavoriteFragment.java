@@ -9,8 +9,10 @@ import android.widget.GridView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import java.util.ArrayList;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 
+import java.util.ArrayList;
 
 /**
  * This is a subclass of {@link Fragment}
@@ -62,6 +64,10 @@ public class FavoriteFragment extends Fragment {
         // Closing the database connection and notifying the adapter to reload our data
         db_communicator.close();
         recipeAdapter.notifyDataSetChanged();
+
+        // Creating an animation for the grid
+        YoYo.with(Techniques.FadeIn).repeatMode(1).playOn(v.findViewById(R.id.grid));
+
         return v;
     }
 

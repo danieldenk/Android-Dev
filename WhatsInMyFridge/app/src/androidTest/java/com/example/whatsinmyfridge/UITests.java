@@ -30,7 +30,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 /**
  * These are just simple UI Tests to check whether the ingredient add/drop and navigation to the recipes 
- * is actually working
+ * is actually working (HomeFragment)
  */
 public class UITests {
     @Rule
@@ -100,7 +100,6 @@ public class UITests {
         SystemClock.sleep(1000);
         onView(withId(R.id.button_search)).perform(click());
     }
-
 }
 
 /**
@@ -128,5 +127,4 @@ class CustomViewAction {
             }
         };
     }
-
 }

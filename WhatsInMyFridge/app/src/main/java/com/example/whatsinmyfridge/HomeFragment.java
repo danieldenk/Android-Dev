@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,8 +21,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.LandingAnimator;
 
 
 /**
@@ -44,7 +51,6 @@ public class HomeFragment extends Fragment implements IngredientAdapter.Ingredie
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -55,8 +61,9 @@ public class HomeFragment extends Fragment implements IngredientAdapter.Ingredie
         // Initiating the adapter on the list of ingredients
         rv_adapt = new IngredientAdapter(getContext(), ingredients, this);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rv.setAdapter(rv_adapt);
 
+        rv.setAdapter(new AlphaInAnimationAdapter(rv_adapt));
+        rv.setItemAnimator(new LandingAnimator());
 
         // Opening a connection to the database to get all of the ingredients
         DB_Communicator db_communicator = new DB_Communicator(getContext());
@@ -64,7 +71,7 @@ public class HomeFragment extends Fragment implements IngredientAdapter.Ingredie
 
         // Adding all the ingredients we allow to exist
         // Hashmap because it conforms to DB logic (the arraylist has all of the columns for title)
-        for(int i = 0; i < db_communicator.getIngredientsData(0).size(); i++)
+        for (int i = 0; i < db_communicator.getIngredientsData(0).size(); i++)
             all_ingredients.put(db_communicator.getIngredientsData(0).get(i), db_communicator.getIngredientsData(db_communicator.getIngredientsData(0).get(i)));
 
         // Closing the database connection afterwards
@@ -83,6 +90,9 @@ public class HomeFragment extends Fragment implements IngredientAdapter.Ingredie
         // This is the button to add ingredients
         final Button add_button = v.findViewById(R.id.button_add);
 
+        // Initializing the search button
+        final Button button_search = v.findViewById(R.id.button_search);
+
         // The TextChangeListener checks whether we type sth in the input field
         // if this is the case then we want the button to be pressable
         // NOTE: Of course we could also just check if the input is present within the HashMap
@@ -96,8 +106,8 @@ public class HomeFragment extends Fragment implements IngredientAdapter.Ingredie
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                // If the text is being changed and is not empty then you can add ingredients
-                if (!String.valueOf(charSequence).equals(""))
+                // If the text is being changed and is not empty and a valid ingredient then you can add ingredients
+                if (!String.valueOf(charSequence).equals("") && all_ingredients.containsKey(charSequence.toString()))
                     add_button.setEnabled(true);
                 else
                     add_button.setEnabled(false);
@@ -105,7 +115,10 @@ public class HomeFragment extends Fragment implements IngredientAdapter.Ingredie
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                if (!ingredients.isEmpty())
+                    button_search.setEnabled(true);
+                else
+                    button_search.setEnabled(false);
             }
         });
 
@@ -120,14 +133,15 @@ public class HomeFragment extends Fragment implements IngredientAdapter.Ingredie
             }
         });
 
-        // Initializing the search button
-        Button button_search = v.findViewById(R.id.button_search);
         // Creating an onclick listener for it
         button_search.setOnClickListener(new View.OnClickListener() {
             // When we click on search then a new activity is being created and the
             // list of picked ingredients is being passed for later processing
             @Override
             public void onClick(View v) {
+                // Setting progress as search loading indicator
+                ProgressBar progressBar = (ProgressBar) getView().getRootView().findViewById(R.id.homeProgress);
+                progressBar.setVisibility(ProgressBar.VISIBLE);
                 Intent intent = new Intent(getActivity(), SearchResults.class);
                 intent.putParcelableArrayListExtra(IngredientItem.class.getSimpleName(), ingredients);
                 getActivity().startActivity(intent);
@@ -141,17 +155,17 @@ public class HomeFragment extends Fragment implements IngredientAdapter.Ingredie
         super.onCreate(savedInstanceState);
     }
 
-
     // This is some fancy extra functionality I have implemented
-    // At this current moment it is still quite static in the sense, that not
-    // all of the data is present in the database yet, which is why calories and
-    // nutriciousness are fixed.
+    // getting calories and nutritiousness from database
     @Override
     public void ingredientInfo(int position) {
         // I created this dialog box with some additional information about ingredients
         // if an ingredient is being clicked then it pops up and we get more information about it
         Dialog dialog = new Dialog(getContext());
-        dialog.setContentView(R.layout.infobox);
+        dialog.setContentView(R.layout.infobox_ingredient_dialog);
+
+        // Creating an animation for the dialog information
+        YoYo.with(Techniques.RollIn).repeat(0).repeatMode(1).duration(600).playOn(dialog.findViewById(R.id.infobox));
 
         TextView info_title = (TextView) dialog.findViewById(R.id.info_title);
         TextView info_desc = (TextView) dialog.findViewById(R.id.info_desc);
@@ -177,6 +191,19 @@ public class HomeFragment extends Fragment implements IngredientAdapter.Ingredie
         ingredients.remove(position);
         // Notifying the adapter so he updates his display
         rv_adapt.notifyItemRemoved(position);
+
+        // In case the last item was deleted, we shouldn't be able to perform a search
+        if (ingredients.isEmpty()) {
+            Button button_search = v.findViewById(R.id.button_search);
+            button_search.setEnabled(false);
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        ProgressBar p = getActivity().findViewById(R.id.homeProgress);
+        p.setVisibility(ProgressBar.INVISIBLE);
     }
 
     // Adding functionality for Ingredients
@@ -190,7 +217,7 @@ public class HomeFragment extends Fragment implements IngredientAdapter.Ingredie
         boolean item_seen = false;
 
         // Creating a new object for the recyclerview that can later be displayed
-        IngredientItem temp = new IngredientItem(R.drawable.ic_restaurant_menu_green_24dp, source.getText().toString(), all_ingredients.get(title).get(1), all_ingredients.get(title).get(2),all_ingredients.get(title).get(3));
+        IngredientItem temp = new IngredientItem(R.drawable.ic_restaurant_menu_green_24dp, source.getText().toString(), all_ingredients.get(title).get(1), all_ingredients.get(title).get(2), all_ingredients.get(title).get(3));
 
         // For every item in our recyclerview ...
         for (int i = 0; i < rv_adapt.getItemCount(); i++)

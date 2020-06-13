@@ -17,6 +17,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 
 import java.util.ArrayList;
 
@@ -102,7 +104,8 @@ public class SearchFragment extends Fragment {
                     desc = recipe_flat.get(1);
                     diff = recipe_flat.get(2);
                     ing = recipe_flat.get(3);
-                    fav = Integer.parseInt(recipe_flat.get(4));;
+                    fav = Integer.parseInt(recipe_flat.get(4));
+                    ;
                     url = recipe_flat.get(5);
 
                     // Setting the display variables to their text values
@@ -122,7 +125,6 @@ public class SearchFragment extends Fragment {
                     ImageView img = (ImageView) getView().findViewById(R.id.search_img);
                     Glide.with(getContext()).load(url).dontAnimate().into(img);
 
-
                     // If the recipe is a favorite then display the full heart
                     // else the heart with the border and no filling
                     ImageView fav = (ImageView) getView().findViewById(R.id.search_heart);
@@ -132,9 +134,7 @@ public class SearchFragment extends Fragment {
                         else
                             Glide.with(getView()).load(R.drawable.ic_favorite_border_black_24dp).into(fav);
                     }
-
                 }
-
             }
 
             @Override
@@ -170,9 +170,12 @@ public class SearchFragment extends Fragment {
                         fav.setImageResource(R.drawable.ic_favorite_yellow_24dp);
                     }
                 }
-
             }
         });
+
+        // Creating an animation for the favorite heart
+        YoYo.with(Techniques.Pulse).delay(3000).duration(1000).repeat(-1).playOn(v.findViewById(R.id.search_heart));
+
         // Last but not least close the connection to the database
         //db_communicator.close();
         return v;

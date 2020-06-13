@@ -90,9 +90,5 @@ public class IsolatedTests {
                 Log.d("Debug", call.request().url().toString());
             }
         });
-
-
     }
-
-
 }

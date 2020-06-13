@@ -58,15 +58,21 @@ public class DatabaseTests {
         // Avocado Toast does not exist so the result should be empty
         assertEquals(db_communicator.searchRecipe("Avocado Toast").size(), 0);
         // Fried Egg does exist and the values returned should equal the ones provided
-        assertEquals(db_communicator.searchRecipe("Fried Egg"), new ArrayList<String>(Arrays.asList("Fried Egg", "An egg that has been fried", "Super Easy", "Eggs", "1", "http://www.lecker.de/assets/field/image/wie-macht-man-spiegelei-b2.jpg")));
+        assertEquals(db_communicator.searchRecipe("Fried Egg"), new ArrayList<String>(Arrays.asList("Fried Egg", "An egg that has been fried\n" +
+                "\n" +
+                "Instruction:\n" +
+                "1. Crack the egg\n" +
+                "2. Insert the cracked egg into the pan\n" +
+                "3. Season it\n" +
+                "4. You are done", "Super Easy", "Eggs", "1", "http://www.lecker.de/assets/field/image/wie-macht-man-spiegelei-b2.jpg")));
     }
 
     @Test
     public void getDataTest(){
         // Checks if the amount of data returned matches the size of elements in the database
-        assertEquals(db_communicator.getData(5).size(), 4);
+        assertEquals(db_communicator.getData(5).size(), 5);
         // Gives the difficulty of all of the recipes in the database
-        assertEquals(db_communicator.getData(2), new ArrayList<String>(Arrays.asList("Super Easy", "Medium", "Super Easy", "Easy")));
+        assertEquals(db_communicator.getData(2), new ArrayList<String>(Arrays.asList("Super Easy", "Medium", "Super Easy", "Easy", "Medium")));
     }
 
     @Test
