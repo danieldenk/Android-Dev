@@ -2,8 +2,7 @@
 This repository includes the sourcecode to the app that had to be developed for android during the Android Development class of VIA University College.
 
 <hr>
-<h2>Find the YouTube Video here:
-https://youtu.be/SGCrmQ1_Ia4</h2>
+<h2>Find the YouTube Video here: https://youtu.be/SGCrmQ1_Ia4</h2>
 <hr>
 
 <h3>For a better navigation throughout the app, and to understand each of the componants better, I have also created a Flowchart which you can find in this directory.</h3>
@@ -22,7 +21,7 @@ Once you open the project, you are going to find a folder with deprecated classe
     <li>It is not possible to search for an empty list of ingredients.</li>
     <li>Only valid (known) Ingredients can be added to the list of ingredients.</li>
   </ul></li>
-
+  <li>The background image that is used at the login, is a free to use background wallpaper for android.<br>Here I had to change the opacity.</li>
   <li>The source code includes a lot of comments about future development plans. Search for "TODO" to read more.</li>
   <li>You can also find the YouTube demonstration of the app beneath:</li>
   <a href="http://www.youtube.com/watch?feature=player_embedded&v=SGCrmQ1_Ia4" target="_blank"><img src="http://img.youtube.com/vi/SGCrmQ1_Ia4/0.jpg" 
