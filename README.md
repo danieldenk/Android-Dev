@@ -1,7 +1,7 @@
 # Android-Dev
 This repository includes the sourcecode to the app that had to be developed for android during the Android Development class of VIA University College.
 
-## This app's purpose is to recommend you recipes that you can follow based on the ingredients that you have in your fridge.<br>It recommends you recipes for all kind of ingredient combinations.
+### This app's purpose is to recommend you recipes that you can follow based on the ingredients that you have in your fridge.<br>It recommends you recipes for all kind of ingredient combinations.
 
 <hr>
 <h3>Find the YouTube Video here: https://youtu.be/SGCrmQ1_Ia4</h3>
