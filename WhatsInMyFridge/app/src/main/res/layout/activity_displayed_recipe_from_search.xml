@@ -12,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            tools:context=".DisplayedRecipeFromSearch"
+            tools:context=".search_mapping.DisplayedRecipeFromSearch"
             android:background="@color/basicWhite">
 
             <androidx.appcompat.widget.Toolbar

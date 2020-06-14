@@ -2,6 +2,9 @@ package com.example.whatsinmyfridge;
 
 import androidx.test.rule.ActivityTestRule;
 
+import com.example.whatsinmyfridge.database.DB_Communicator;
+import com.example.whatsinmyfridge.login.LoggedInActivity;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

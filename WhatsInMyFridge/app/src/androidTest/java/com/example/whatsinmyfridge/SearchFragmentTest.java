@@ -11,6 +11,8 @@ import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
+import com.example.whatsinmyfridge.login.LoginActivity;
+
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
@@ -34,6 +36,7 @@ import static org.hamcrest.Matchers.is;
 /**
  * These are just simple UI Tests to check whether the favorite adding / recipe display functionality
  * is actually working (SearchFragment)
+ * - This is a recorded espresso test that I have modified
  */
 @LargeTest
 @RunWith(AndroidJUnit4.class)

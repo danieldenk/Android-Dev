@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.example.whatsinmyfridge.search_mapping.DisplayedRecipeFromSearch;
+import com.example.whatsinmyfridge.search_mapping.IRetrofitAPI;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 

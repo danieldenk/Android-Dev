@@ -14,6 +14,8 @@ import androidx.test.espresso.matcher.RootMatchers;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.uiautomator.UiDevice;
 
+import com.example.whatsinmyfridge.login.LoggedInActivity;
+
 import org.hamcrest.Matcher;
 import org.junit.Rule;
 import org.junit.Test;

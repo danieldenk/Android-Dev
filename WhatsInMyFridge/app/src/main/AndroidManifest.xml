@@ -11,20 +11,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DisplayedRecipeFromSearch" />
-        <activity android:name=".SearchResults" />
+        <activity android:name=".search_mapping.DisplayedRecipeFromSearch" />
+        <activity android:name=".search_mapping.SearchResults" />
         <activity
-            android:name=".About"
+            android:name=".fragments.About"
             android:label="@string/title_activity_about"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LoggedInActivity">
+        <activity android:name=".login.LoggedInActivity">
 
         </activity>
     </application>
