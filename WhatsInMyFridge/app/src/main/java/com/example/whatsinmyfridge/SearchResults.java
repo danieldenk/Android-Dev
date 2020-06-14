@@ -67,8 +67,46 @@ public class SearchResults extends AppCompatActivity {
 
         db_communicator.close();
 
+        ArrayList<Integer> index_recipes = recipePowerFilter(ing_lst);
+
+        // For all indices previously added to the list add the recipes to the recipe list for display
+        for (Integer i : index_recipes)
+            recipes.add(new Recipe(title_lst.get(i), diff_lst.get(i), url_lst.get(i)));
+
+        // If the recipe list is empty then we obviously could not find any fitting recipe and in
+        // this case we let the user know
+        if (recipes.size() == 0) {
+            TextView searched_ingredients_result = findViewById(R.id.searched_ingredients_result);
+            searched_ingredients_result.setText("No Recipe matching your Ingredients could be found :(");
+        }
+
+        // The gridview gets an item click listener so we know which element has been clicked
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+                // For debugging reasons if you want to see the index and title uncomment this:
+                // Log.d("Debug", String.valueOf(recipes.get(position).getTitle()) + " clicked");
+
+                // Creating a new intent where we pass the title of the recipe clicked, as it is the
+                // Primary Key within the Database and can be used to search more information
+                Intent i = new Intent(SearchResults.this, DisplayedRecipeFromSearch.class);
+                i.putExtra("RecipeName", recipes.get(position).getTitle());
+                startActivity(i);
+            }
+        });
+        // Notifying the adapter as we have added recipes
+        // recipeAdapter.notifyDataSetChanged();
+    }
+
+    /**
+     * This is a method that is creating the powerSet of all the ingredients, before matching them to recipes
+     **/
+    public ArrayList<Integer> recipePowerFilter(ArrayList<String> ing_lst) {
+
         int index = 0;
 
+        // Contains all the indexes for the recipes that meet the ingredients requirement
         ArrayList<Integer> index_recipes = new ArrayList<>();
 
         // For the powerSet, there has to be created a set first...
@@ -103,35 +141,6 @@ public class SearchResults extends AppCompatActivity {
             // Goto next index
             index++;
         }
-
-
-        // For all indices previously added to the list add the recipes to the recipe list for display
-        for (Integer i : index_recipes)
-            recipes.add(new Recipe(title_lst.get(i), diff_lst.get(i), url_lst.get(i)));
-
-        // If the recipe list is empty then we obviously could not find any fitting recipe and in
-        // this case we let the user know
-        if (recipes.size() == 0) {
-            TextView searched_ingredients_result = findViewById(R.id.searched_ingredients_result);
-            searched_ingredients_result.setText("No Recipe matching your Ingredients could be found :(");
-        }
-
-        // The gridview gets an item click listener so we know which element has been clicked
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-                // For debugging reasons if you want to see the index and title uncomment this:
-                // Log.d("Debug", String.valueOf(recipes.get(position).getTitle()) + " clicked");
-
-                // Creating a new intent where we pass the title of the recipe clicked, as it is the
-                // Primary Key within the Database and can be used to search more information
-                Intent i = new Intent(SearchResults.this, DisplayedRecipeFromSearch.class);
-                i.putExtra("RecipeName", recipes.get(position).getTitle());
-                startActivity(i);
-            }
-        });
-        // Notifying the adapter as we have added recipes
-        // recipeAdapter.notifyDataSetChanged();
+        return index_recipes;
     }
 }

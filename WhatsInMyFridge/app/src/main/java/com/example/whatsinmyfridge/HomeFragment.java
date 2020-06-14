@@ -65,6 +65,10 @@ public class HomeFragment extends Fragment implements IngredientAdapter.Ingredie
         rv.setAdapter(new AlphaInAnimationAdapter(rv_adapt));
         rv.setItemAnimator(new LandingAnimator());
 
+        // Setting Progressbar size
+        ProgressBar progressBar = v.findViewById(R.id.homeProgress);
+        progressBar.setScaleY(3f);
+
         // Opening a connection to the database to get all of the ingredients
         DB_Communicator db_communicator = new DB_Communicator(getContext());
         db_communicator.open();
@@ -202,8 +206,8 @@ public class HomeFragment extends Fragment implements IngredientAdapter.Ingredie
     @Override
     public void onPause() {
         super.onPause();
-        ProgressBar p = getActivity().findViewById(R.id.homeProgress);
-        p.setVisibility(ProgressBar.INVISIBLE);
+        ProgressBar progressBar = getActivity().findViewById(R.id.homeProgress);
+        progressBar.setVisibility(ProgressBar.INVISIBLE);
     }
 
     // Adding functionality for Ingredients

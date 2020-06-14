@@ -179,7 +179,10 @@ public class DisplayedRecipeFromSearch extends AppCompatActivity {
                 String snippet_html = jsonArray.get(0).getAsJsonObject().get("snippet").toString();
                 // Now the only thing left is to clean the snippet from the HTML Brackets and perform a cut on
                 // the last sentence
-                snippet_html = snippet_html.substring(0, snippet_html.lastIndexOf(".") + 1).replaceAll("\\<.*?\\>|\"", "");
+                if (!snippet_html.contains("."))
+                    snippet_html = snippet_html.replaceAll("\\<.*?\\>|\"", "").replace("&quot;", "");
+                else
+                    snippet_html = snippet_html.substring(0, snippet_html.lastIndexOf(".") + 1).replaceAll("\\<.*?\\>|\"", "").replace("&quot;", "");
                 // Once this is done we can add the parsed text to our application
                 if (snippet_html.equals(""))
                     add_info.setText("Wikipedia says:\n" + "nothing found");

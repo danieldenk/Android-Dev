@@ -29,7 +29,7 @@ import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentat
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * These are just simple UI Tests to check whether the ingredient add/drop and navigation to the recipes 
+ * These are just simple UI Tests to check whether the ingredient add/drop and navigation to the recipes
  * is actually working (HomeFragment)
  */
 public class UITests {

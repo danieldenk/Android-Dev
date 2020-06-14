@@ -33,5 +33,4 @@
         android:elevation="6dp"
         app:popupTheme="@color/coolingGreen"/>
 
-
 </RelativeLayout>

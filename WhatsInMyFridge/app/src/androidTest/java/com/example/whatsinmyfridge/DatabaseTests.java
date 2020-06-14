@@ -13,13 +13,13 @@ import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 /**
  * These are the tests for the database logic. As this app is highly dependent
  * on the database, it makes sense to test it thoroughly.
+ *
  * @see DB_Communicator
  */
 @RunWith(JUnit4.class)
@@ -68,7 +68,7 @@ public class DatabaseTests {
     }
 
     @Test
-    public void getDataTest(){
+    public void getDataTest() {
         // Checks if the amount of data returned matches the size of elements in the database
         assertEquals(db_communicator.getData(5).size(), 10);
         // Gives the difficulty of all of the recipes in the database
@@ -76,7 +76,7 @@ public class DatabaseTests {
     }
 
     @Test
-    public void getIngredientsDataTest(){
+    public void getIngredientsDataTest() {
         // Checks if an ingredient of type banana exists
         assertEquals(db_communicator.getIngredientsData("Banana").size(), 0);
         // Checks if an ingredient of type flour exists
@@ -86,11 +86,11 @@ public class DatabaseTests {
     }
 
     @Test(expected = IllegalStateException.class)
-    public void getIngredientsDataTestException(){
+    public void getIngredientsDataTestException() {
         // Checking indices against columns
         assertSame(db_communicator.getIngredientsData(-1), new IllegalStateException());
         assertSame(db_communicator.getIngredientsData(99), new IllegalStateException());
-        }
+    }
 
     //Rolling back changes that were made before
     @Before
